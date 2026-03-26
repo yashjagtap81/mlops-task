@@ -1,0 +1,25 @@
+2026-03-26T01:16:05  INFO      ============================================================
+2026-03-26T01:16:05  INFO      Job started
+2026-03-26T01:16:05  INFO        input  : data_fixed.csv
+2026-03-26T01:16:05  INFO        config : config.yaml
+2026-03-26T01:16:05  INFO        output : metrics.json
+2026-03-26T01:16:05  INFO        log    : run.log
+2026-03-26T01:16:05  INFO      ============================================================
+2026-03-26T01:16:05  INFO      Config loaded — version=v1  seed=42  window=5
+2026-03-26T01:16:05  INFO      NumPy random seed set to 42
+2026-03-26T01:16:05  INFO      Dataset loaded — 10000 rows, 7 columns
+2026-03-26T01:16:05  DEBUG     Columns: ['timestamp', 'open', 'high', 'low', 'close', 'volume_btc', 'volume_usd']
+2026-03-26T01:16:05  INFO      Rolling mean computed — window=5, valid rows=9996, NaN rows=4
+2026-03-26T01:16:05  INFO      Signal generated — 1s=4989, 0s=5007, excluded (NaN)=4
+2026-03-26T01:16:05  DEBUG     Metrics written to metrics.json
+2026-03-26T01:16:05  INFO      ------------------------------------------------------------
+2026-03-26T01:16:05  INFO      Metrics summary:
+2026-03-26T01:16:05  INFO        version            = v1
+2026-03-26T01:16:05  INFO        rows_processed     = 10000
+2026-03-26T01:16:05  INFO        metric             = signal_rate
+2026-03-26T01:16:05  INFO        value              = 0.4991
+2026-03-26T01:16:05  INFO        latency_ms         = 21
+2026-03-26T01:16:05  INFO        seed               = 42
+2026-03-26T01:16:05  INFO        status             = success
+2026-03-26T01:16:05  INFO      ------------------------------------------------------------
+2026-03-26T01:16:05  INFO      Job finished successfully  (21.0 ms)
