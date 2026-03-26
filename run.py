@@ -1,9 +1,4 @@
-"""
-MLOps Batch Job — rolling-mean signal pipeline.
-Usage:
-    python run.py --input data.csv --config config.yaml \
-                  --output metrics.json --log-file run.log
-"""
+
 
 import argparse
 import json
@@ -17,10 +12,6 @@ import pandas as pd
 import yaml
 
 
-# ---------------------------------------------------------------------------
-# Argument parsing
-# ---------------------------------------------------------------------------
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="MLOps signal pipeline")
     parser.add_argument("--input",    required=True, help="Path to OHLCV CSV")
@@ -30,9 +21,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-# ---------------------------------------------------------------------------
-# Logging setup
-# ---------------------------------------------------------------------------
+
 
 def setup_logging(log_file: str) -> logging.Logger:
     logger = logging.getLogger("mlops_pipeline")
@@ -58,9 +47,6 @@ def setup_logging(log_file: str) -> logging.Logger:
     return logger
 
 
-# ---------------------------------------------------------------------------
-# Config loading & validation
-# ---------------------------------------------------------------------------
 
 REQUIRED_CONFIG_KEYS = {"seed", "window", "version"}
 
@@ -94,9 +80,6 @@ def load_config(config_path: str, logger: logging.Logger) -> dict:
     return cfg
 
 
-# ---------------------------------------------------------------------------
-# Dataset loading & validation
-# ---------------------------------------------------------------------------
 
 def load_dataset(input_path: str, logger: logging.Logger) -> pd.DataFrame:
     path = Path(input_path)
@@ -133,9 +116,7 @@ def load_dataset(input_path: str, logger: logging.Logger) -> pd.DataFrame:
     return df
 
 
-# ---------------------------------------------------------------------------
-# Processing
-# ---------------------------------------------------------------------------
+
 
 def compute_rolling_mean(
     df: pd.DataFrame, window: int, logger: logging.Logger
@@ -176,24 +157,17 @@ def compute_signal(
     return signal
 
 
-# ---------------------------------------------------------------------------
-# Metrics output
-# ---------------------------------------------------------------------------
+
 
 def write_metrics(output_path: str, payload: dict, logger: logging.Logger) -> None:
     with open(output_path, "w") as f:
         json.dump(payload, f, indent=2)
     logger.debug("Metrics written to %s", output_path)
 
-
-# ---------------------------------------------------------------------------
-# Main pipeline
-# ---------------------------------------------------------------------------
-
 def main() -> int:
     args = parse_args()
 
-    # Logging must be set up before anything else so errors are captured too
+    
     logger = setup_logging(args.log_file)
 
     start_ts = time.time()
@@ -205,7 +179,7 @@ def main() -> int:
     logger.info("  log    : %s", args.log_file)
     logger.info("=" * 60)
 
-    # We don't know the version until config is loaded; default for error paths
+    
     version = "unknown"
 
     try:
